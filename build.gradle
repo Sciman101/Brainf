@@ -29,7 +29,7 @@ application {
      * This is scheduled to be removed in Gradle 8.0. Use #getMainClass().set(...) instead.
      * See https://docs.gradle.org/6.7/dsl/org.gradle.api.plugins.JavaApplication.html#org.gradle.api.plugins.JavaApplication:mainClass for more details.
      */
-    setMainClassName('info.sciman.Main')
+    getMainClass().set('info.sciman.Main')
 }
 
 test {
