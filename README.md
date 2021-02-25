@@ -10,6 +10,8 @@ Use `./gradlew run` or the provided [`Brainf [run]` IntelliJ run configuration](
 ## Usage
 To load your code, use `BFSession.load()`. To run it, call `BFSession.run()`. An example is provided [here](src/main/java/info/sciman/Main.java).
 
+Alternatively, after loading you can call `BFSession.step()` to step through your code iteratively. Each call to `step()` will return the value under the pointer at the end of the step. You can use `BFSession.available()` to check if there is any remaining code to be executed. 
+
 ## Contributing
 This project adheres to the [Google Java Style](https://google.github.io/styleguide/javaguide.html). This is accomplished with the [`googleJavaFormat()`](https://github.com/diffplug/spotless/tree/main/plugin-gradle#google-java-format) formatter of the [Spotless](https://github.com/diffplug/spotless) Gradle plugin.
 

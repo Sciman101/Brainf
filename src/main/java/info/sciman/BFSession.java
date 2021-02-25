@@ -13,6 +13,7 @@ public class BFSession {
   private static final String ERROR_UNMATCHED =
       "Error parsing input BF: Unbalanced bracket at col &d";
   private static final String ERROR_CANNOT_RUN = "Unable to run, unmatched brackets in source code";
+  private static final String ERROR_INDEX = "%d is out of the bounds of the BF tape [0,%d)";
 
   // Default length of program tape
   private static final int TAPE_LENGTH = 30000;
@@ -43,8 +44,9 @@ public class BFSession {
     this.out = out;
     this.in = in;
 
-    // Create bufferedreader
+    // Create scanner
     scanner = new Scanner(this.in);
+    // We do this so the scanner only reads 1-character tokens in at once
     scanner.useDelimiter("");
 
     ptr = 0;
@@ -72,8 +74,7 @@ public class BFSession {
     if (pos > 0 && pos < TAPE_LENGTH) {
       return tape[pos];
     } else {
-      throw new IndexOutOfBoundsException(
-          pos + " is out of the bounds of the BF tape [0," + TAPE_LENGTH + ")");
+      throw new IndexOutOfBoundsException();
     }
   }
 
@@ -146,7 +147,8 @@ public class BFSession {
   }
 
   /**
-   * Returns true if the pointer has not advanced beyond the end of the available code
+   * Returns true if the pointer has not advanced beyond the end of the available code, and there is no error
+   * preventing execution
    *
    * @return
    */
@@ -159,7 +161,7 @@ public class BFSession {
    *
    * @return
    */
-  public int advance() {
+  public int step() {
 
     if (!available()) {
       return -1;
@@ -225,7 +227,7 @@ public class BFSession {
     if (!error) {
       reset();
       while (available()) {
-        advance();
+        step();
       }
     } else {
       System.out.println(ERROR_CANNOT_RUN);

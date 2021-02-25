@@ -6,6 +6,7 @@ public class Main {
     // Create a brainfuck session and point it to sysout/sysin
     BFSession bf = new BFSession(System.out, System.in);
 
+    // Hello, world!
     bf.load(
         "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.");
     bf.run();
