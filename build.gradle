@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "application"
 }
 
 group 'info.sciman'
@@ -15,9 +16,20 @@ dependencies {
 }
 
 java {
+    // https://docs.gradle.org/current/userguide/toolchains.html
     toolchain {
         languageVersion = JavaLanguageVersion.of(11)
     }
+}
+
+
+application {
+    /*
+     * The JavaApplication.setMainClassName(String) method has been deprecated.
+     * This is scheduled to be removed in Gradle 8.0. Use #getMainClass().set(...) instead.
+     * See https://docs.gradle.org/6.7/dsl/org.gradle.api.plugins.JavaApplication.html#org.gradle.api.plugins.JavaApplication:mainClass for more details.
+     */
+    setMainClassName('info.sciman.Main')
 }
 
 test {
