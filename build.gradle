@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id "application"
+    id "com.diffplug.spotless" version "5.10.2"
 }
 
 group 'info.sciman'
@@ -34,4 +35,11 @@ application {
 
 test {
     useJUnitPlatform()
+}
+
+spotless {
+    java {
+        // https://github.com/diffplug/spotless/tree/main/plugin-gradle#google-java-format
+        googleJavaFormat('1.9')
+    }
 }
