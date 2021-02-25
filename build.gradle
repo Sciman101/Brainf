@@ -40,6 +40,6 @@ test {
 spotless {
     java {
         // https://github.com/diffplug/spotless/tree/main/plugin-gradle#google-java-format
-        googleJavaFormat()
+        googleJavaFormat('1.9')
     }
 }

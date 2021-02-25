@@ -7,4 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 # Check out the repo
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+          java-package: jdk
+      - run: java -version
+      - run: javac -version
       - run: ./gradlew clean build test
