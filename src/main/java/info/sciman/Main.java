@@ -3,12 +3,26 @@ package info.sciman;
 public class Main {
 
   public static void main(String[] args) {
+
+    String code = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+
     // Create a brainfuck session and point it to sysout/sysin
-    BFSession bf = new BFSession(System.out, System.in);
+    BfSession bf = new BfSession.BfBuilder(code)
+                      .in(System.in)
+                      .out(System.out)
+                      .build();
+
+    BfSession bfOptimized = new BfSession.BfBuilder(code)
+            .in(System.in)
+            .out(System.out)
+            .optimize()
+            .build();
 
     // Hello, world!
-    bf.load(
-        "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.");
     bf.run();
+    System.out.println("Iterations: "+bf.getNumIterations());
+    System.out.println("---");
+    bfOptimized.run();
+    System.out.println("Iterations: "+bfOptimized.getNumIterations());
   }
 }
